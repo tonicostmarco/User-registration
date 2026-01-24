@@ -1,88 +1,196 @@
-User Registration API
+# User Registration API
 
 Simple REST API for user registration and management.
 
-This project was created for learning purposes, focusing on practicing core concepts of Spring Boot, JPA, DTOs, validation, and exception handling.
+This project was created for learning purposes, focusing on clean architecture, validation, and proper error handling using Spring Boot.
 
-Project Goal
+---
 
-You practice:
+## About the project
 
-Building REST APIs with Spring Boot
+This API allows basic user management operations.
 
-Layered architecture (Controller, Service, Repository)
+The main goal is to practice backend fundamentals before moving to more advanced topics such as authentication and security.
 
-Using DTOs for input and output
+---
 
-Bean Validation
+## What you practice here
 
-Business rules with custom exceptions
+- REST API design  
+- Layered architecture  
+- DTO pattern  
+- Bean Validation  
+- Business rules  
+- Custom exceptions  
+- Centralized exception handling  
+- JPA and database constraints  
 
-Centralized exception handling
+---
 
-Transaction management
+## Technologies
 
-UNIQUE constraint in the database
+- Java  
+- Spring Boot  
+- Spring Web  
+- Spring Data JPA  
+- Jakarta Bean Validation  
+- Maven  
+- Relational Database  
 
-Technologies
+---
 
-Java
+## Features
 
-Spring Boot
+- Create user  
+- Update user  
+- Delete user  
+- Find user by id  
+- List users with pagination  
 
-Spring Web
+---
 
-Spring Data JPA
+## Business rules
 
-Bean Validation (Jakarta Validation)
+- Email must be unique  
+- Duplicate emails are not allowed  
+- On update:
+  - `name` and `email` are required  
+  - `password` is optional  
+  - If `password` is sent, it must be valid  
 
-Relational database
+---
 
-Maven
-
-Features
-
-Find user by id
-
-List users with pagination
-
-Create user
-
-Update user
-
-Delete user
-
-Business Rules
-
-Email must be unique
-
-It is not allowed to register two users with the same email
-
-On update:
-
-name and email are required
-
-password is optional
-
-If password is sent, it must be valid
-
-Password Validation
+## Password rules
 
 When provided, the password must:
 
-Have between 8 and 72 characters
+- Have between 8 and 72 characters  
+- Contain:
+  - Uppercase letter  
+  - Lowercase letter  
+  - Number  
+  - Symbol  
 
-Contain:
+If `password` is not sent on update, the previous password is kept.
 
-Uppercase letter
+---
 
-Lowercase letter
+## Endpoints
 
-Number
+### Get user by id
 
-Symbol
+```http
+GET /users/{id}
+````
 
-If the password is not sent on update, the previous password is kept.
+---
 
-Endpoints
-Find user by id
+### List users
+
+```http
+GET /users
+```
+
+Supports pagination.
+
+---
+
+### Create user
+
+```http
+POST /users
+```
+
+Request body example:
+
+```json
+{
+  "name": "MarcoDev",
+  "email": "marco@email.com",
+  "password": "Abc@1234"
+}
+```
+
+---
+
+### Update user
+
+Without changing password:
+
+```http
+PUT /users/{id}
+```
+
+```json
+{
+  "name": "MarcoDev",
+  "email": "marco@email.com"
+}
+```
+
+With password change:
+
+```json
+{
+  "name": "MarcoDev",
+  "email": "marco@email.com",
+  "password": "New@1234"
+}
+```
+
+---
+
+### Delete user
+
+```http
+DELETE /users/{id}
+```
+
+---
+
+## Error handling
+
+The API uses centralized exception handling with `@ControllerAdvice`.
+
+### Possible responses
+
+* **404 Not Found**
+  User not found
+
+* **400 Bad Request**
+  Validation errors
+  Referential integrity errors
+
+* **409 Conflict**
+  Email already registered
+
+---
+
+## Project structure
+
+```text
+controllers
+services
+repositories
+dto
+entities
+exceptions
+```
+
+---
+
+## Notes
+
+* This is a learning-focused project
+* Passwords are not encrypted
+* No authentication or authorization
+* Designed to practice backend fundamentals
+
+---
+
+## Next steps
+
+* Encrypt passwords using BCrypt
+* Add authentication with Spring Security
+* Write unit tests
+* Add API documentation with Swagger
