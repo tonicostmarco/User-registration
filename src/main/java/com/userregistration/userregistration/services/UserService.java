@@ -6,7 +6,8 @@ import com.userregistration.userregistration.dto.UserUpdateDTO;
 import com.userregistration.userregistration.entities.User;
 import com.userregistration.userregistration.repositories.UserRepository;
 
-import com.userregistration.userregistration.services.exceptions.DataBaseException;
+import com.userregistration.userregistration.services.exceptions.BusinessException;
+import com.userregistration.userregistration.services.exceptions.DatabaseException;
 import com.userregistration.userregistration.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDTO findById(Long id) {
-       User entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Esse usuario nao existe. "));
+       User entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found. "));
        return new UserDTO(entity);
     }
 
@@ -37,12 +38,19 @@ public class UserService {
 
     @Transactional
     public UserDTO insert(UserInputDTO dto) {
-        User user = new User();
-        copyDtoToEntityIn(dto, user);
+        if (repository.existsByEmail(dto.getEmail())) {
+            throw new BusinessException("Email already registered");
+        }
 
-        user = repository.save(user);
+        try {
+            User user = new User();
+            copyDtoToEntityIn(dto, user);
+            user = repository.save(user);
+            return new UserDTO(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new BusinessException("Email already registered");
+        }
 
-        return new UserDTO(user);
     }
 
 
@@ -53,12 +61,16 @@ public class UserService {
 
             User user = repository.getReferenceById(id);
             copyDtoToEntityUpdate(dto, user);
-
             user = repository.save(user);
             return new UserDTO(user);
 
         } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Usuário não encontrado. ");
+
+            throw new ResourceNotFoundException("User not found.");
+
+        } catch (DataIntegrityViolationException e) {
+
+            throw new BusinessException("Email already registered");
         }
 
 
@@ -69,14 +81,15 @@ public class UserService {
     public void delete(Long id) {
 
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("id inválido. ");
+            throw new ResourceNotFoundException("Invalid Id");
         }
 
         try {
             repository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw new DataBaseException("Falha de integridade referencial. Verifique se existe uma transação pendente.");
+            throw new DatabaseException("Referential integrity failure.\n" +
+                    "Check whether there is a pending transaction.");
         }
 
     }
@@ -84,11 +97,16 @@ public class UserService {
     private void copyDtoToEntityIn(UserInputDTO dto, User entity) {
         entity.setName(dto.getName());
         entity.setPassword(dto.getPassword());
+        entity.setEmail(dto.getEmail());
 
     }
     private void copyDtoToEntityUpdate(UserUpdateDTO dto, User entity) {
         entity.setName(dto.getName());
-        entity.setPassword(dto.getPassword());
+              entity.setEmail(dto.getEmail());
+
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            entity.setPassword(dto.getPassword());
+        }
 
     }
 
