@@ -1,4 +1,4 @@
-package com.aquecimento.aquecimento.controllers.errors;
+package com.userregistration.userregistration.controllers.errors;
 
 public class FieldMessage {
 

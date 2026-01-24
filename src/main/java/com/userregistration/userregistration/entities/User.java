@@ -1,4 +1,4 @@
-package com.aquecimento.aquecimento.entities;
+package com.userregistration.userregistration.entities;
 
 import jakarta.persistence.*;
 

@@ -1,11 +1,11 @@
-package com.aquecimento.aquecimento.dto;
+package com.userregistration.userregistration.dto;
 
-import com.aquecimento.aquecimento.entities.User;
+import com.userregistration.userregistration.entities.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class UserInputDTO {
+public class UserUpdateDTO {
 
     @Size(min = 5, max = 12, message = "O usuario deve ter de 5 a 12 caracteres")
     @NotBlank(message = "Campo requerido")
@@ -16,18 +16,17 @@ public class UserInputDTO {
             regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^\\w\\s]).+$",
             message = "Password must have upper, lower, number and symbol"
     )
-    @NotBlank
     private String password;
 
-    public UserInputDTO() {
+    public UserUpdateDTO() {
     }
 
-    public UserInputDTO(String name, String password) {
+    public UserUpdateDTO(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public UserInputDTO(User user) {
+    public UserUpdateDTO(User user) {
         name = user.getName();
         password = user.getPassword();
     }

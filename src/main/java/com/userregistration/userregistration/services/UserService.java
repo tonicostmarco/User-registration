@@ -1,13 +1,13 @@
-package com.aquecimento.aquecimento.services;
+package com.userregistration.userregistration.services;
 
-import com.aquecimento.aquecimento.dto.UserInputDTO;
-import com.aquecimento.aquecimento.dto.UserDTO;
-import com.aquecimento.aquecimento.dto.UserUpdateDTO;
-import com.aquecimento.aquecimento.entities.User;
-import com.aquecimento.aquecimento.repositories.UserRepository;
+import com.userregistration.userregistration.dto.UserInputDTO;
+import com.userregistration.userregistration.dto.UserDTO;
+import com.userregistration.userregistration.dto.UserUpdateDTO;
+import com.userregistration.userregistration.entities.User;
+import com.userregistration.userregistration.repositories.UserRepository;
 
-import com.aquecimento.aquecimento.services.exceptions.DataBaseException;
-import com.aquecimento.aquecimento.services.exceptions.ResourceNotFoundException;
+import com.userregistration.userregistration.services.exceptions.DataBaseException;
+import com.userregistration.userregistration.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

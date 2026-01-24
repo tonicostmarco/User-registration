@@ -1,4 +1,4 @@
-package com.aquecimento.aquecimento.services.exceptions;
+package com.userregistration.userregistration.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

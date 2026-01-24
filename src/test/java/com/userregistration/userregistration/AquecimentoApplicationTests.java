@@ -1,4 +1,4 @@
-package com.aquecimento.aquecimento;
+package com.userregistration.userregistration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

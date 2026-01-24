@@ -1,9 +1,9 @@
-package com.aquecimento.aquecimento.controllers;
+package com.userregistration.userregistration.controllers;
 
-import com.aquecimento.aquecimento.dto.UserInputDTO;
-import com.aquecimento.aquecimento.dto.UserDTO;
-import com.aquecimento.aquecimento.dto.UserUpdateDTO;
-import com.aquecimento.aquecimento.services.UserService;
+import com.userregistration.userregistration.dto.UserInputDTO;
+import com.userregistration.userregistration.dto.UserDTO;
+import com.userregistration.userregistration.dto.UserUpdateDTO;
+import com.userregistration.userregistration.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

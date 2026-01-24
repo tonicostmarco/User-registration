@@ -1,8 +1,8 @@
-package com.aquecimento.aquecimento.controllers.handlers;
+package com.userregistration.userregistration.controllers.handlers;
 
-import com.aquecimento.aquecimento.controllers.errors.CustomError;
-import com.aquecimento.aquecimento.controllers.errors.ValidationError;
-import com.aquecimento.aquecimento.services.exceptions.ResourceNotFoundException;
+import com.userregistration.userregistration.controllers.errors.CustomError;
+import com.userregistration.userregistration.controllers.errors.ValidationError;
+import com.userregistration.userregistration.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

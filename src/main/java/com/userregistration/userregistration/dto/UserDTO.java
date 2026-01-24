@@ -1,6 +1,6 @@
-package com.aquecimento.aquecimento.dto;
+package com.userregistration.userregistration.dto;
 
-import com.aquecimento.aquecimento.entities.User;
+import com.userregistration.userregistration.entities.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
