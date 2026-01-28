@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aquecimento</groupId>
-	<artifactId>aquecimento</artifactId>
+	<artifactId>userregistration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>aquecimento</name>
 	<description>Aquecimento para projeto maior</description>

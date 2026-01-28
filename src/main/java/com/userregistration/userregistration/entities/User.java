@@ -12,7 +12,9 @@ public class User {
     private String name;
 
     @Column(nullable = false, unique = true)
+    @JoinColumn(name = "email")
     private String email;
+    @JoinColumn(name = "password")
     private String password;
 
     public User() {

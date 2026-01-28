@@ -29,17 +29,6 @@ public class UserInputDTO {
     public UserInputDTO() {
     }
 
-    public UserInputDTO(String name, String password, String email) {
-        this.name = name;
-        this.password = password;
-        this.email = email;
-    }
-
-    public UserInputDTO(User user) {
-        name = user.getName();
-        email = user.getEmail();
-        password = user.getPassword();
-    }
 
     public String getName() {
         return name;

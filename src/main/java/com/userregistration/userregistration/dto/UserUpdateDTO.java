@@ -31,19 +31,7 @@ public class UserUpdateDTO {
     public UserUpdateDTO() {
     }
 
-    public UserUpdateDTO(String name, String password, String email) {
-        this.name = name;
-        this.password = password;
-        this.email = email;
-    }
-
-    public UserUpdateDTO(User user) {
-        name = user.getName();
-        email = user.getEmail();
-        password = user.getPassword();
-    }
-
-    public String getName() {
+       public String getName() {
         return name;
     }
 
